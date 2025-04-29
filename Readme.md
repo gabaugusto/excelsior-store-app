@@ -117,37 +117,49 @@ D -->|Armazena| E[(Banco de Dados)]
 
 ## 🗂️ Arquitetura de Pastas
 
+```plaintext
+ExcelsiorStore/ # Raiz do projeto
 app/
 ├── src/
-│ ├── main/
-│ │ ├── kotlin+java/ # Código Kotlin e Java
-│ │ │ ├── data/
-│ │ │ │ ├── MongoDB.kt # Configuração do Realm
-│ │ │ │ └── models/
-│ │ │ │ └── Produto.kt # Modelo de dados
-│ │ │ │
-│ │ │ ├── ui/
-│ │ │ │ ├── screens/
-│ │ │ │ │ └── MainScreen.kt
-│ │ │ │ ├── components/
-│ │ │ │ │ └── ProdutoItem.kt
-│ │ │ │ └── theme/
-│ │ │ │
-│ │ │ └── viewmodels/
-│ │ │ └── MainViewModel.kt
-│ │ │
-│ │ └── res/ # Recursos Android
-│ │ ├── drawable/
-│ │ ├── values/
-│ │ └── ...
-│ │
-│ └── debug/ # Configurações de debug
+│   ├── main/
+│       ├── kotlin+java/ # Código Kotlin e Java
+│           ├── data/
+│               ├── MongoDB.kt # Configuração do Realm
+│               └── models/
+│                   └── Produto.kt # Modelo de dados
+│
+│           ├── ui/
+│               ├── screens/
+│                   └── MainScreen.kt
+│               ├── components/
+│                   └── ProdutoItem.kt
+│               └── theme/
+│
+│           └── viewmodels/
+│               └── MainViewModel.kt
+│
+│       └── res/ # Recursos Android
+│           ├── drawable/
+│           ├── values/
+│           └── ...
+│
+│   └── debug/ # Configurações de debug
 │
 ├── build.gradle # Dependências principais
 └── ...
+```
+
+#### 📌 Legenda
+
+- **`data/`**: Tudo relacionado a dados (modelos, configuração do banco)
+- **`ui/`**: Componentes visuais (telas, componentes)
+- **`viewmodels/`**: Lógica entre a UI e os dados
+- **`build.gradle`**: Dependências do projeto
+- **`res/`**: Recursos do Android (imagens, strings, etc.)
 
 ### 🔄 Fluxo Visual Simplificado (ASCII)
 
+```plaintext
 +----------------+ +---------------+ +----------+ +---------------+
 | Tela (UI) | <---> | ViewModel | <---> | Realm | <---> | MongoDB Atlas |
 +----------------+ +---------------+ +----------+ +---------------+
@@ -156,16 +168,7 @@ app/
 | Mostra dados | Gerencia lógica | Sincroniza dados
 ↓ ↓ ↓
 [Interação do usuário] [Operações de CRUD] [Banco de dados na nuvem]
-
-
-### 📌 Legenda
-
-- **`data/`**: Tudo relacionado a dados (modelos, configuração do banco)
-- **`ui/`**: Componentes visuais (telas, componentes)
-- **`viewmodels/`**: Lógica entre a UI e os dados
-- **Fluxo**: Sempre da esquerda (interface) para direita (banco de dados)
-- **`build.gradle`**: Dependências do projeto
-- **`res/`**: Recursos do Android (imagens, strings, etc.)
+```
 
 ## 🔧 Passos para Executar:
 
