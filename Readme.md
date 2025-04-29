@@ -163,11 +163,6 @@ app/
 +----------------+ +---------------+ +----------+ +---------------+
 | Tela (UI) | <---> | ViewModel | <---> | Realm | <---> | MongoDB Atlas |
 +----------------+ +---------------+ +----------+ +---------------+
-↑ ↑ ↑
-| | |
-| Mostra dados | Gerencia lógica | Sincroniza dados
-↓ ↓ ↓
-[Interação do usuário] [Operações de CRUD] [Banco de dados na nuvem]
 ```
 
 ## 🔧 Passos para Executar:
