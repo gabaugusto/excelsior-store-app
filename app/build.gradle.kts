@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     id("kotlin-kapt") // Para Realm (se usar anotações)
+    id("io.realm.kotlin") version "1.9.0" apply false
 }
 
 android {
@@ -29,14 +30,19 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
+    }
+    packaging {
+        resources {
+            excludes += "META-INF/native-image/org.mongodb/bson/native-image.properties"
+        }
     }
 }
 
@@ -60,6 +66,9 @@ dependencies {
 
     // Realm MongoDB
     implementation(libs.library.sync)
+
+    implementation("io.realm.kotlin:library-sync:1.10.0")
+    implementation("org.mongodb:mongodb-driver-sync:4.11.0") // Para MongoDB
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.core)

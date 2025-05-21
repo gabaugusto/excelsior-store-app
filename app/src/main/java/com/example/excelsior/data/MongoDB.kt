@@ -1,18 +1,18 @@
 import com.example.excelsior.data.models.Produto
 import io.realm.kotlin.Realm
-import io.realm.kotlin.RealmConfiguration
+import io.realm.kotlin.mongodb.App
+import io.realm.kotlin.mongodb.sync.SyncConfiguration
 
 object MongoDB {
     private var realm: Realm? = null
+    private val app = App.create("61f09dd3bcdea04a53ac5161") // Substitua pelo seu App ID
 
-    suspend fun getInstance(): Realm {
+    fun getInstance(): Realm {
         if (realm == null || realm!!.isClosed()) {
-            val config = RealmConfiguration.Builder(
-                schema = setOf(Produto::class)
-            )
-                .syncDirectory("your-realm-app-id") // Substitua pelo seu App ID
+            val user = app.currentUser!!
+            val syncConfig = SyncConfiguration.Builder(user, "61f09dd3bcdea04a53ac5161", setOf(Produto::class)) // Pass partitionValue here
                 .build()
-            realm = Realm.open(config)
+            realm = Realm.open(syncConfig)
         }
         return realm!!
     }

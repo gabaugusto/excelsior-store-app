@@ -1,3 +1,4 @@
+// Corrected snippet from MainScreen.kt
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,9 +11,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.material3.Button
+import androidx.compose.material3.Text // Make sure to import Text from material3
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.excelsior.viewmodels.MainViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.compose.foundation.lazy.items // Import for LazyColumn items
 
 @Composable
 fun MainScreen(viewModel: MainViewModel = viewModel()) {
@@ -25,15 +29,16 @@ fun MainScreen(viewModel: MainViewModel = viewModel()) {
 
         OutlinedTextField(
             value = nome,
-            onValueChange = {
-                val it
-                nome = it
+            onValueChange = { newName -> // Corrected: explicitly naming the parameter
+                nome = newName
             },
             label = { Text("Nome do produto") }
         )
         OutlinedTextField(
             value = preco,
-            onValueChange = { preco = it },
+            onValueChange = { newPrice -> // Similarly, you can name this parameter
+                preco = newPrice
+            },
             label = { Text("Preço") }
         )
         Button(onClick = {
@@ -56,7 +61,8 @@ fun MainScreen(viewModel: MainViewModel = viewModel()) {
     }
 }
 
-@Composable
-fun Text(s: String) {
-
-}
+// Remove this redundant Composable if you intend to use Material's Text
+// @Composable
+// fun Text(s: String) {
+//
+// }
