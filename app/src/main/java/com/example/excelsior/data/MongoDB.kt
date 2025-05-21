@@ -9,7 +9,7 @@ object MongoDB {
 
     fun getInstance(): Realm {
         if (realm == null || realm!!.isClosed()) {
-            val user = app.currentUser!!
+            val user = app.currentUser ?: throw IllegalStateException("Nenhum usuário autenticado encontrado.")
             val syncConfig = SyncConfiguration.Builder(user, "61f09dd3bcdea04a53ac5161", setOf(Produto::class)) // Pass partitionValue here
                 .build()
             realm = Realm.open(syncConfig)
